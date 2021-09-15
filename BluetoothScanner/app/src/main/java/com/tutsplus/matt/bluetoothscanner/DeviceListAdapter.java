@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Matt on 5/12/2015.
@@ -48,6 +49,7 @@ public class DeviceListAdapter extends ArrayAdapter<DeviceItem>{
         DeviceItem item = (DeviceItem)getItem(position);
         final String name = item.getDeviceName();
         TextView macAddress = null;
+        TextView typeView = null;
         View viewToUse = null;
 
         // This block exists to inflate the settings list item conditionally based on whether
@@ -61,9 +63,12 @@ public class DeviceListAdapter extends ArrayAdapter<DeviceItem>{
         viewToUse.setTag(holder);
 
         macAddress = (TextView)viewToUse.findViewById(R.id.macAddress);
+        typeView = viewToUse.findViewById(R.id.type);
+
         line = (View)viewToUse.findViewById(R.id.line);
         holder.titleText.setText(item.getDeviceName());
         macAddress.setText(item.getAddress());
+        typeView.setText(item.getTypeString());
 
         if (Objects.equals(item.getDeviceName(), "No Devices")) {
             macAddress.setVisibility(View.INVISIBLE);

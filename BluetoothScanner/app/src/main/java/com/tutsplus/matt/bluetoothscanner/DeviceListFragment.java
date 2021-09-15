@@ -60,7 +60,7 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
                 Log.d("DEVICELIST", "Bluetooth device found\n");
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Create a new device item
-                DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), "false");
+                DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), device.getType(), "false");
                 // Add it to our adapter
                 mAdapter.add(newDevice);
                 mAdapter.notifyDataSetChanged();
@@ -95,14 +95,14 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
         Set<BluetoothDevice> pairedDevices = bTAdapter.getBondedDevices();
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
-                DeviceItem newDevice= new DeviceItem(device.getName(),device.getAddress(),"false");
+                DeviceItem newDevice= new DeviceItem(device.getName(),device.getAddress(),device.getType(), "false");
                 deviceItemList.add(newDevice);
             }
         }
 
         // If there are no devices, add an item that states so. It will be handled in the view.
         if(deviceItemList.size() == 0) {
-            deviceItemList.add(new DeviceItem("No Devices", "", "false"));
+            deviceItemList.add(new DeviceItem("No Devices", "", BluetoothDevice.DEVICE_TYPE_UNKNOWN,"false"));
         }
 
         Log.d("DEVICELIST", "DeviceList populated\n");
