@@ -65,7 +65,7 @@ public class DeviceListAdapter extends ArrayAdapter<DeviceItem>{
         holder.titleText.setText(item.getDeviceName());
         macAddress.setText(item.getAddress());
 
-        if ( item.getDeviceName().toString() == "No Devices") {
+        if (Objects.equals(item.getDeviceName(), "No Devices")) {
             macAddress.setVisibility(View.INVISIBLE);
             line.setVisibility(View.INVISIBLE);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams
