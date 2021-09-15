@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +22,8 @@ import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.Set;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A fragment representing a list of Items.

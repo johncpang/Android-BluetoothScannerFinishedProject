@@ -1,17 +1,18 @@
 package com.tutsplus.matt.bluetoothscanner;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
-public class ListActivity extends ActionBarActivity implements DeviceListFragment.OnFragmentInteractionListener  {
+public class ListActivity extends FragmentActivity implements DeviceListFragment.OnFragmentInteractionListener  {
 
 
     private DeviceListFragment mDeviceListFragment;
