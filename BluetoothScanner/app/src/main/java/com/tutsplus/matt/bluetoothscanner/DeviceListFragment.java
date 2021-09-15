@@ -57,10 +57,37 @@ public class DeviceListFragment extends Fragment implements AbsListView.OnItemCl
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                Log.d("DEVICELIST", "Bluetooth device found\n");
+				Log.d("Classic", "======= Bluetooth device found =======");
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 // Create a new device item
                 DeviceItem newDevice = new DeviceItem(device.getName(), device.getAddress(), device.getType(), "false");
+				Log.d("Classic", "Address: " + device.getAddress());
+//				Log.d("Classic", "Alias: " + device.getAlias());
+				Log.d("Classic", "Name: " + device.getName());
+				switch (device.getType()) {
+					case BluetoothDevice.DEVICE_TYPE_UNKNOWN: {
+						Log.d("Classic", "Type: " + "DEVICE_TYPE_UNKNOWN");
+						break;
+					}
+					case BluetoothDevice.DEVICE_TYPE_CLASSIC: {
+						Log.d("Classic", "Type: " + "DEVICE_TYPE_CLASSIC");
+						break;
+					}
+					case BluetoothDevice.DEVICE_TYPE_LE: {
+						Log.d("Classic", "Type: " + "DEVICE_TYPE_LE");
+						break;
+					}
+					case BluetoothDevice.DEVICE_TYPE_DUAL: {
+						Log.d("Classic", "Type: " + "DEVICE_TYPE_DUAL");
+						break;
+					}
+				}
+				ParcelUuid[] uuids = device.getUuids();
+				if (uuids != null) {
+					for (ParcelUuid uuid : uuids) {
+						Log.d("Classic", "UUID: " + uuid.toString());
+					}
+				}
                 // Add it to our adapter
                 mAdapter.add(newDevice);
                 mAdapter.notifyDataSetChanged();
